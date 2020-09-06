@@ -1,3 +1,10 @@
+# Fork lib from Peemouse (https://github.com/Peemouse/VescUart)
+
+Edit to  allow proper use of the ``setLocalProfile`` function.
+
+Tested with the 5.01 VESC FW.
+
+
 # VescUart
 
 Arduino library for interfacing with a VESC over UART. This library is based upon the library written by RollingGecko (https://github.com/RollingGecko/VescUartControl). The library is updated for the newest VESC firmware (FW3.40) and cleaned up a bit. The library is not backwards compatible, so you have to upload the newest firmware to your VESC.

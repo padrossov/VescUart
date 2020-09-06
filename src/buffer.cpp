@@ -23,6 +23,31 @@
  */
 
 #include "buffer.h"
+#include <math.h>
+#include <stdbool.h>
+
+
+void buffer_append_float32_auto( uint8_t* buffer, float number, int32_t *index) {
+  int e = 0;
+  float sig = frexpf(number, &e);
+  float sig_abs = fabsf(sig);
+  uint32_t sig_i = 0;
+
+  if (sig_abs >= 0.5) {
+    sig_i = (uint32_t)((sig_abs - 0.5f) * 2.0f * 8388608.0f);
+    e += 126;
+  }
+
+  long  res = (( (long)e & 0xFFL) << 23L) | ( (long)sig_i & 0x7FFFFFL);
+
+
+  if (sig < 0) {
+    res |= 1L << 31L;
+  }
+
+	buffer_append_uint32(buffer, res, index);
+}
+
 
 void buffer_append_int16(uint8_t* buffer, int16_t number, int32_t *index) {
 	buffer[(*index)++] = number >> 8;
