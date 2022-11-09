@@ -1,6 +1,10 @@
-# Fork lib from Peemouse (https://github.com/Peemouse/VescUart)
+# Fork lib from Peemouse (https://github.com/Peemouse/VescUart)           --> 512 bytes lower RAM usage
 
 Edit to  allow proper use of the ``setLocalProfile`` function.
+
+CRC table stored in flash with the help of PROGMEM function. Saves 512 bytes of RAM!
+
+Removed Debug messages in order to save RAM.
 
 Tested with the 5.01 VESC FW.
 
@@ -12,6 +16,22 @@ Arduino library for interfacing with a VESC over UART. This library is based upo
 **Important:** This is not a dropin replacement for RollingGeckos library. You will have to make some changes to your software, as all functions and values is now within a class, see below.
 
 ## Implementation
+
+
+crc table stored in flash:
+```cpp
+const PROGMEM unsigned short crc16_tab[] = { ... }
+
+
+unsigned short crc16(unsigned char *buf, unsigned int len) {
+	unsigned int i;
+	unsigned short cksum = 0;
+	for (i = 0; i < len; i++) {
+		cksum = pgm_read_word (&crc16_tab[(((cksum >> 8) ^ *buf++) & 0xFF)]) ^ (cksum << 8);
+	}
+	return cksum;
+}
+```
 
 To use the library you will have initiate the VescUart class and set the Serial port for UART communcation.
 
