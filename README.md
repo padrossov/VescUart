@@ -2,6 +2,10 @@
 
 Edit to  allow proper use of the ``setLocalProfile`` function.
 
+CRC table stored in flash with the help of PROGMEM function. Saves 512 bytes of RAM!
+
+Removed Debug messages in order to save RAM.
+
 Tested with the 5.01 VESC FW.
 
 
