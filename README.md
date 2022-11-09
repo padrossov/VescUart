@@ -17,6 +17,22 @@ Arduino library for interfacing with a VESC over UART. This library is based upo
 
 ## Implementation
 
+
+crc table stored in flash:
+```cpp
+const PROGMEM unsigned short crc16_tab[] = { ... }
+
+
+unsigned short crc16(unsigned char *buf, unsigned int len) {
+	unsigned int i;
+	unsigned short cksum = 0;
+	for (i = 0; i < len; i++) {
+		cksum = pgm_read_word (&crc16_tab[(((cksum >> 8) ^ *buf++) & 0xFF)]) ^ (cksum << 8);
+	}
+	return cksum;
+}
+```
+
 To use the library you will have initiate the VescUart class and set the Serial port for UART communcation.
 
 ```cpp
