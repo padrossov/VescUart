@@ -1,4 +1,4 @@
-# Fork lib from Peemouse (https://github.com/Peemouse/VescUart)
+# Fork lib from Peemouse (https://github.com/Peemouse/VescUart) 512 bytes lower RAM usage
 
 Edit to  allow proper use of the ``setLocalProfile`` function.
 
