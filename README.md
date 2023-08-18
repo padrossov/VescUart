@@ -1,10 +1,10 @@
 # Fork lib from Peemouse (https://github.com/Peemouse/VescUart)           --> 512 bytes lower RAM usage
 
-Edit to  allow proper use of the ``setLocalProfile`` function.
+Edited to allow proper use of the ``setLocalProfile`` function.
 
-CRC table stored in flash with the help of PROGMEM function. Saves 512 bytes of RAM!
+CRC table stored in flash with the help of PROGMEM function. It saves 512 bytes of RAM!
 
-Removed Debug messages in order to save RAM.
+Removed Debug messages.
 
 Tested with the 5.01 VESC FW.
 
